@@ -1,0 +1,38 @@
+{
+  "city:0":{
+    "name":"Santiago (CL)",
+    "key":"city:0",
+    "latitude":"-33.4372",
+    "longitude":"-70.6506"
+  },
+  "city:1":{
+    "name":"Zurich (CH)",
+    "key":"city:1",
+    "latitude":"47.3666687",
+    "longitude":"8.5500002"
+  },
+  "city:2":{
+    "name":"Auckland (NZ)",
+    "key":"city:2",
+    "latitude":"-36.849",
+    "longitude":"174.763"
+  },
+  "city:3":{
+    "name":"Sydney (AU)",
+    "key":"city:3",
+    "latitude":"-33.8667",
+    "longitude":"151.2"
+  },
+  "city:4":{
+    "name":"Londres (UK)",
+    "key":"city:4",
+    "latitude":"51.5072",
+    "longitude":"-0.1275"
+  },
+  "city:5":{
+    "name":"Georgia (USA)",
+    "key":"city:5",
+    "latitude":"33.7490005",
+    "longitude":"-84.3879776"
+  } 
+}

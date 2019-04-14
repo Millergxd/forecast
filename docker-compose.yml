@@ -13,3 +13,22 @@ services:
       - /forecast-front/node_modules
     ports:
       - "3000:3000"
+    env_file: ./forecast-front/.env
+  back:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      args:
+        dir: forecast-server
+    command: npm start
+    working_dir: /forecast-server
+    volumes:
+      - ./forecast-server:/forecast-server
+      - /forecast-server/node_modules
+    ports:
+      - "4000:4000"
+    depends_on:
+      - redis
+    env_file: ./forecast-server/.env
+  redis:
+    image: redis
