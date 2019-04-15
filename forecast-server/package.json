@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Millergxd/forecast#readme",
   "dependencies": {
+    "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "node-fetch": "^2.3.0",
     "redis": "^2.8.0",

@@ -1,2 +1,2 @@
-import openSocket from 'socket.io-client';
-export const socket = openSocket(process.env.REACT_APP_BACKEND);
+import io from 'socket.io-client';
+export const socket = io('/', {path:'/api/socket.io'});

@@ -1,14 +1,20 @@
 var app = require('express')();
 var http = require('http').Server(app);
 
-var io = require('socket.io')(http);
+require('dotenv').config()
+
+var io = require('socket.io')(http,{
+  secure: true,
+  rejectUnauthorized: false,
+  path:'/api/socket.io'
+});
 
 var redis = require('redis');
-var client = redis.createClient(6379, 'redis');
+var client = redis.createClient(6379);
 
 let tool =require('./save_data')
 
-app.get('/', function(req, res){
+app.get('/api', function(req, res){
   res.send('Hello World!');
 });
 
@@ -39,5 +45,5 @@ io.on('connection', function(socket){
 });
 
 http.listen(process.env.PORT, function(){
-  console.log(`listening on *:${process.env.PORT}`);
+  console.log(`listening on ${process.env.PORT}`);
 });
