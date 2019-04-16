@@ -10,7 +10,7 @@ var io = require('socket.io')(http,{
 });
 
 var redis = require('redis');
-var client = redis.createClient(6379);
+var client = redis.createClient(6379,process.env.NODE_ENV==='dev'? 'redis':null);
 
 let tool =require('./save_data')
 
@@ -39,9 +39,13 @@ io.on('connection', function(socket){
     })
   }
   doSomething()
-  setInterval(()=>{
+  let interval = setInterval(()=>{
     doSomething()
   },10000)
+  socket.on('disconnect', ()=>{
+    console.log("disconnected")
+    clearInterval(interval)
+  })
 });
 
 http.listen(process.env.PORT, function(){

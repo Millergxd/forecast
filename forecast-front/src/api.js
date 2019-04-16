@@ -1,2 +1,3 @@
 import io from 'socket.io-client';
-export const socket = io('/', {path:'/api/socket.io'});
+const { REACT_APP_BACKEND } = process.env
+export const socket = io( REACT_APP_BACKEND, {path:'/api/socket.io'});

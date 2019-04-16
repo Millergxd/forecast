@@ -13,7 +13,8 @@ services:
       - /forecast-front/node_modules
     ports:
       - "3000:3000"
-    env_file: ./forecast-front/.env
+    env_file: 
+      - ./forecast-front/.env.development
   back:
     build: 
       context: .

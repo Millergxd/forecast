@@ -18,7 +18,17 @@ En el root del directorio ./forecast  correr
 
 Se crearan 3 containers, back, front y redis.
 
-# Ambiente de produccion (Maquina virtual de ubuntu)
+# Ambiente de produccion (Configuracion para instancia de EC2 con imagen de ubuntu 18.04)
+
+Para subir a produccion es importante en el archivo que se encuentra en ./forecast-server/.env eliminar la variable NODE_ENV=dev
+
+Desde nuestro local copiamos la carpeta con el los archivos del servidor
+
+`$ scp -i  key.pem -r /tu/path/del/proyecto ubuntu@*ip de la instancia*:/home/ubuntu/`
+
+Conectarse a traves de ssh
+
+`$ ssh -i key.pem ubuntu@*ip de la instancia*`
 
 Hacer update
 
@@ -30,21 +40,33 @@ Instalar nginx
 
 Eliminar el archivo HTML por default que se crea en /var/www/html
 
+`$ sudo rm /var/www/html/index.nginx-debian.html`
+
 Eliminar la configuracion por default que se crea en /etc/nginx/sites-enable
 
-Copiar la configuracion que se encuentra en el root del directorio como 'default' en '/etc/nginx/sites-enable'
+`$ sudo rm /etc/nginx/sites-enable/default`
+
+Copiar la configuracion que se encuentra en el root del proyecto como 'default' en '/etc/nginx/sites-enable'
+Estando en /home/ubuntu
+
+`$ sudo cp default /etc/nginx/sites-enable/`
 
 Reiniciar  nginx
 
 `$ sudo service nginx restart`
 
-Crear el build dentro dela carpeta de 'forecast-front'
+Le damos permiso a la carpeta en 'html' en '/var/www'
+
+`$ sudo chmod 777 /var/www/html`
+
+Dentro de tu local
+Crear el build de react dentro de la carpeta 'forecast-front' correr
 
 `$ npm run build`
 
-Copiar en la maquina virtual en '/var/www/html' esa es la ruta del nginx
+Copiar a la instancia el build
 
-Luego copiar la carpeta forecast-server en la maquina virtual
+`$ scp -i key.pem -r /tu/path/forecast-front/build/* ubuntu@*ip de la instancia*:/var/www/html/`
 
 Dentro de la maquina virtual 
 
@@ -60,7 +82,7 @@ Instalar npm
 
 `$ sudo apt install npm`
 
-Instalar dependencias
+Dentro de /home/ubuntu instalamos las dependencias
 
 `$ npm i --silent`
 
@@ -69,3 +91,5 @@ Correr script para iniciar el servidor
 `./start.sh`
 
 Done!
+
+Si se quiere parar el servidor con `./stop.sh` es suficiente
