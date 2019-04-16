@@ -93,3 +93,5 @@ Correr script para iniciar el servidor
 Done!
 
 Si se quiere parar el servidor con `./stop.sh` es suficiente
+
+En caso de querer cambiar el API KEY para hacer los request a Dark Sky el link se encuentra en duro en ./forecast-server/.env como API_URL=https://api.darksky.net/forecast/*insertar aqui api key*/
